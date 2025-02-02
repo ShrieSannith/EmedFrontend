@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import {
   Box,
@@ -9,9 +11,10 @@ import {
   AccordionSummary,
   AccordionDetails,
   Icon,
+  useMediaQuery,
 } from "@mui/material";
 import MKTypography from "components/MKTypography";
-import PhoneInput from "react-phone-input-2";
+import PhoneInput from "react-phone-number-input";
 import "react-phone-input-2/lib/style.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
@@ -48,25 +51,34 @@ function ServiceAccordion() {
     e.preventDefault();
     console.log("Form Submitted:", formData);
   };
-
+  const isMobile = useMediaQuery("(max-width:1000px)");
   return (
     <>
       {/* Accordion Container */}
-      <Accordion>
+      <Accordion
+        style={{
+          marginLeft: isMobile ? "auto" : "0px", // Center the element
+          marginRight: isMobile ? "auto" : "0px", // Center the element
+          width: isMobile ? "75%" : "auto", // Set width to 75% on mobile
+          fontSize: "15px", // Default font size for the details
+        }}
+      >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>SERVICES</Typography>
+          <Typography style={{ fontSize: "18px" }}>LIST OF SERVICES</Typography>{" "}
+          {/* Title font size */}
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails style={{ fontSize: "15px" }}>
           <div>
             {/* List of Services */}
             {services.map((service, index) => (
-              <Accordion key={index}>
+              <Accordion key={index} style={{ fontSize: "15px" }}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography>{service}</Typography>
+                  <Typography style={{ fontSize: "15px" }}>{service}</Typography>{" "}
+                  {/* Other service font size */}
                 </AccordionSummary>
-                <AccordionDetails>
-                  <Typography>{`Details about ${service}`}</Typography>
-                </AccordionDetails>
+                {/* <AccordionDetails>
+            <Typography>{`Details about ${service}`}</Typography>
+          </AccordionDetails> */}
               </Accordion>
             ))}
           </div>
@@ -74,7 +86,14 @@ function ServiceAccordion() {
       </Accordion>
 
       {/* Request a Service Form */}
-      <Box sx={{ mt: 4, p: 2, border: "1px solid #ddd", borderRadius: "8px", boxShadow: 3 }}>
+      <Box
+        sx={{ mt: 4, p: 2, border: "1px solid #ddd", borderRadius: "8px", boxShadow: 3 }}
+        style={{
+          marginLeft: isMobile ? "auto" : "0px", // Center the element
+          marginRight: isMobile ? "auto" : "0px", // Center the element
+          width: isMobile ? "75%" : "auto", // Set width to 75% on mobile
+        }}
+      >
         <Typography variant="h5" gutterBottom>
           Request a Service
         </Typography>
@@ -114,20 +133,18 @@ function ServiceAccordion() {
 
             <Grid item xs={12}>
               <PhoneInput
-                country={"in"}
+                international
+                defaultCountry="IN"
                 value={phone}
-                onChange={(phone) => setPhone(phone)}
-                inputStyle={{
-                  width: "100%", // Ensure the input takes up full width of its container
-                  fontSize: "14px", // Adjust font size for better fit
-                }}
-                containerStyle={{
-                  width: "100%", // Ensure the container takes up full width
-                  padding: "0", // Remove extra padding if necessary
-                  margin: "0", // Remove margin to keep it responsive
-                }}
-                dropdownStyle={{
-                  height: "50px", // Control dropdown height
+                onChange={setPhone}
+                placeholder="Enter phone number"
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  fontSize: "14px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  backgroundColor: "white",
                 }}
               />
             </Grid>
@@ -145,7 +162,7 @@ function ServiceAccordion() {
                   borderRadius: "5px",
                   border: "1px solid #ccc",
                   fontSize: "16px",
-                  marginBottom: "16px",
+                  marginBottom: "0px",
                 }}
               >
                 <option value="">Select a Service</option>
@@ -155,6 +172,21 @@ function ServiceAccordion() {
                   </option>
                 ))}
               </select>
+            </Grid>
+
+            {/* Message Input (Not Mandatory) */}
+            <Grid item xs={12}>
+              <TextField
+                label="Message (Optional)"
+                variant="outlined"
+                fullWidth
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                multiline
+                rows={4}
+                sx={{ backgroundColor: "#fff", color: "black" }}
+              />
             </Grid>
 
             <Grid item xs={12}>

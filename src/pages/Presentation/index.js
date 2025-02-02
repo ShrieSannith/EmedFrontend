@@ -33,7 +33,8 @@ import Quickapply from "pages/Presentation/sections/Quickapply";
 // Routes
 import routes from "routes";
 import footerRoutes from "footer.routes";
-import PhoneInput from "react-phone-input-2";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 // Images
 import bgImage from "assets/images/OT_generated_2.png";
 import "../../App.css";
@@ -125,7 +126,7 @@ function Presentation() {
               }}
               className="bannerForms"
             >
-              <TextField
+              {/* <TextField
                 placeholder="Client Name"
                 variant="outlined"
                 size="small"
@@ -135,7 +136,7 @@ function Presentation() {
                   backgroundColor: "rgba(255, 255, 255, 0.5)",
                   marginRight: "10px",
                 }}
-              />
+              /> */}
               {/* <TextField
                 placeholder="Phone Number"
                 type="text"
@@ -148,18 +149,43 @@ function Presentation() {
                   marginRight: "10px",
                 }}
               /> */}
-              <TextField
-                placeholder="Service"
-                type="text"
-                variant="outlined"
-                size="small"
+              <select
                 value={service}
                 onChange={(e) => setService(e.target.value)}
-                sx={{
+                style={{
                   backgroundColor: "rgba(255, 255, 255, 0.5)",
                   marginRight: "10px",
+                  padding: "10px",
+
+                  border: "1px solid #ccc",
+                  width: "100%",
+                  maxWidth: "400px",
+                  fontSize: "14px",
+                  boxSizing: "border-box",
                 }}
-              />
+              >
+                <option value="" disabled>
+                  Select a Service
+                </option>
+                <option value="Hospital Maintenance">Hospital Maintenance</option>
+                <option value="NABH Calibration Services">NABH Calibration Services</option>
+                <optgroup label="Equipment for Rent">
+                  <option value="Ventilator">Ventilator</option>
+                  <option value="Monitor">Monitor</option>
+                  <option value="Syringe Infusion Pump">Syringe Infusion Pump</option>
+                  <option value="Blanket Warmer">Blanket Warmer</option>
+                  <option value="ECG Machine">ECG Machine</option>
+                  <option value="Xray Portable">Xray Portable</option>
+                </optgroup>
+                <option value="On-site Service Support">On-site Service Support</option>
+                <option value="AMC Medical Equipment">AMC Medical Equipment</option>
+                <option value="Practical Training Programs">Practical Training Programs</option>
+                <option value="MGPS Installation Services">MGPS Installation Services</option>
+                <option value="Refurbished Equipment">Refurbished Equipment</option>
+                <option value="Home Care Equipment">Home Care Equipment</option>
+                <option value="Standby Support">Standby Support</option>
+              </select>
+
               <Button
                 variant="contained"
                 type="submit"
@@ -188,42 +214,120 @@ function Presentation() {
             borderRadius: 2,
           }}
         >
-          <div style={{ maxWidth: "120px" }}>
-            {" "}
-            {/* Adjust max width here */}
-            <label style={{ fontSize: "16px", fontWeight: "bold" }}>Phone</label>
-            <PhoneInput
-              country={"in"}
-              value={phone}
-              onChange={(phone) => setPhone(phone)}
-              style={{
-                width: "10px", // Ensure the PhoneInput takes up the full width of its container
-                fontSize: "14px", // Adjust font size for better fit
-              }}
-            />
-          </div>
-          <br />
-          <MKTypography variant="h6" component="h2" gutterBottom>
-            Tell us more
-          </MKTypography>
-          <form onSubmit={handleModalSubmit}>
-            <TextField
-              placeholder="Additional Information"
-              multiline
-              rows={4}
-              variant="outlined"
-              fullWidth
-              value={additionalInfo}
-              onChange={(e) => setAdditionalInfo(e.target.value)}
-              sx={{ marginBottom: 2 }}
-            />
-            <Button
-              variant="contained"
+          <form
+            style={{
+              maxWidth: "500px",
+              margin: "0 auto",
+              padding: "20px",
+              backgroundColor: "#f9f9f9",
+              borderRadius: "8px",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            {/* Name Field */}
+            <div style={{ marginBottom: "16px" }}>
+              <label
+                htmlFor="name"
+                style={{
+                  display: "block",
+                  marginBottom: "8px",
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                }}
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                placeholder="Enter your name"
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  fontSize: "14px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                }}
+              />
+            </div>
+
+            {/* Phone Number Field */}
+
+            <div style={{ marginBottom: "16px" }}>
+              <label
+                htmlFor="phone"
+                style={{
+                  display: "block",
+                  marginBottom: "8px",
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                }}
+              >
+                Phone
+              </label>
+              <PhoneInput
+                international
+                defaultCountry="IN"
+                value={phone}
+                onChange={setPhone}
+                placeholder="Enter phone number"
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  fontSize: "14px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                }}
+              />
+            </div>
+
+            {/* Tell Us More Field */}
+            <div style={{ marginBottom: "16px" }}>
+              <label
+                htmlFor="additionalInfo"
+                style={{
+                  display: "block",
+                  marginBottom: "8px",
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                }}
+              >
+                Tell us more
+              </label>
+              <textarea
+                id="additionalInfo"
+                value={additionalInfo}
+                onChange={(e) => setAdditionalInfo(e.target.value)}
+                placeholder="Tell us more about your requirements"
+                rows="4"
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  fontSize: "14px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                }}
+              ></textarea>
+            </div>
+
+            {/* Submit Button */}
+            <button
               type="submit"
-              style={{ backgroundColor: "#3457D5", color: "white", borderRadius: 0 }}
+              style={{
+                width: "100%",
+                padding: "10px",
+                fontSize: "16px",
+                fontWeight: "bold",
+                color: "white",
+                backgroundColor: "#3457D5",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
             >
               Submit
-            </Button>
+            </button>
           </form>
         </Box>
       </Modal>
@@ -264,7 +368,7 @@ function Presentation() {
         <MOTMGPS />
         {/* <Information /> */}
         {/* <Carousel /> */}
-        <Quickapply />
+        {/* <Quickapply /> */}
         <CardSection />
         <Container sx={{ mt: 5 }}>
           {/* <BuiltByDevelopers /> */}

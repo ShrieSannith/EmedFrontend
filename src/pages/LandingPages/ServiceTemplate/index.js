@@ -43,7 +43,7 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 import routes from "routes";
 import footerRoutes from "footer.routes";
 function Information() {
-  const isMobile = useMediaQuery("(max-width:768px)");
+  const isMobile = useMediaQuery("(max-width:1000px)");
   return (
     <>
       <DefaultNavbar
@@ -61,7 +61,7 @@ function Information() {
       <br />
       <Box
         sx={{
-          padding: "10px",
+          padding: isMobile ? "0px" : "10px",
           marginLeft: "10px",
           display: "grid",
           gap: "5px",
@@ -70,7 +70,13 @@ function Information() {
       >
         <Grid item xs={12} sm={6} style={{ margin: "10px" }}>
           {" "}
-          <AccordianForms />
+          <AccordianForms
+            style={{
+              marginLeft: isMobile ? "auto" : "0px", // Center the element
+              marginRight: isMobile ? "auto" : "0px", // Center the element
+              width: isMobile ? "75%" : "auto", // Set width to 75% on mobile
+            }}
+          />
         </Grid>
         <Grid item xs={12} sm={6} style={{ margin: "10px" }}>
           <Typography
@@ -95,61 +101,16 @@ function Information() {
               margin: "0 auto 0px auto", // Center and add space below
             }}
           ></Box>{" "}
-          <MKBox component="section" py={2}>
-            {/* Hospital Maintenance and NABH Calibration */}
-            <Container>
-              <Grid container spacing={10} justifyContent="center" alignItems="center">
-                {/* Hospital Maintenance */}
-                <Grid item xs={12} md={5} sx={{ display: "flex", justifyContent: "center" }}>
-                  <RotatingCard>
-                    <RotatingCardFront
-                      image={HospitalMaintenance}
-                      icon="vaccines"
-                      title={
-                        <>
-                          Hospital
-                          <br />
-                          Maintenance
-                        </>
-                      }
-                      description="We offer hospital maintenance and frequent checks to ensure smooth operations."
-                    />
-                    <RotatingCardBack
-                      image={HospitalMaintenance}
-                      title="What do we offer?"
-                      description="Our hospital maintenance services provide reliable upkeep for medical facilities, focusing on equipment servicing, facility repairs, and sanitation."
-                    />
-                  </RotatingCard>
-                </Grid>
-
-                {/* NABH Calibration */}
-                <Grid item xs={12} md={5} sx={{ display: "flex", justifyContent: "center" }}>
-                  <RotatingCard>
-                    <RotatingCardFront
-                      image={HospitalMaintenance}
-                      icon="emergency"
-                      title={
-                        <>
-                          NABH
-                          <br />
-                          Calibration
-                        </>
-                      }
-                      description="NABH calibration ensures medical equipment meets standards set by the Medical Board."
-                    />
-                    <RotatingCardBack
-                      image={HospitalMaintenance}
-                      title="What do we offer?"
-                      description="NABH calibration ensures compliance with accreditation standards for accurate and safe healthcare delivery."
-                    />
-                  </RotatingCard>
-                </Grid>
-              </Grid>
-            </Container>
-            <br />
+          <MKBox component="section">
             {/* OT and MGPS*/}
             <Container>
-              <Grid container spacing={10} justifyContent="center" alignItems="center">
+              <Grid
+                container
+                spacing={10}
+                justifyContent="center"
+                alignItems="center"
+                style={{ marginTop: "-50px" }}
+              >
                 {/* OT Installation Services */}
                 {/* OT Development and Installation */}
                 <Grid item xs={12} md={5} sx={{ display: "flex", justifyContent: "center" }}>
@@ -159,17 +120,17 @@ function Information() {
                       icon="construction"
                       title={
                         <>
-                          OT Development
+                          Modular
                           <br />
-                          and Installation
+                          Operation Theatre
                         </>
                       }
-                      description="Comprehensive solutions for the design and installation of state-of-the-art OTs."
+                      description="Comprehensive solutions for the design and installation of Modular OTs."
                     />
                     <RotatingCardBack
                       image={HospitalMaintenance}
                       title="What do we offer?"
-                      description="Our OT development and installation services include the design, construction, and integration of advanced Operation Theatre setups. From planning layouts to installing high-tech medical equipment, we ensure functionality, hygiene standards, and compliance with healthcare regulations."
+                      description="We offer OT development and installation services, including design, construction, and integration of advanced setups while ensuring compliance."
                     />
                   </RotatingCard>
                 </Grid>
@@ -192,7 +153,59 @@ function Information() {
                     <RotatingCardBack
                       image={HospitalMaintenance}
                       title="What do we offer?"
-                      description="End-to-end MGPS installation services ensuring optimal oxygen and other gas flow in medical facilities."
+                      description="We provide end-to-end MGPS installation services, ensuring optimal oxygen and gas flow to meet the needs of medical facilities."
+                    />
+                  </RotatingCard>
+                </Grid>
+              </Grid>
+            </Container>
+            <br />
+            {/* Hospital Maintenance and NABH Calibration */}
+            <Container>
+              <Grid container spacing={10} justifyContent="center" alignItems="center">
+                {/* Hospital Maintenance */}
+                <Grid item xs={12} md={5} sx={{ display: "flex", justifyContent: "center" }}>
+                  <RotatingCard>
+                    <RotatingCardFront
+                      image={HospitalMaintenance}
+                      icon="vaccines"
+                      title={
+                        <>
+                          Hospital
+                          <br />
+                          Maintenance
+                        </>
+                      }
+                      description="We offer hospital maintenance and frequent checks to ensure smooth operations."
+                    />
+                    <RotatingCardBack
+                      image={HospitalMaintenance}
+                      title="What do we offer?"
+                      description="
+We provide comprehensive hospital maintenance services, handling technical issues, equipment servicing, facility repairs, and sanitation to ensure efficiency."
+                    />
+                  </RotatingCard>
+                </Grid>
+
+                {/* NABH Calibration */}
+                <Grid item xs={12} md={5} sx={{ display: "flex", justifyContent: "center" }}>
+                  <RotatingCard>
+                    <RotatingCardFront
+                      image={HospitalMaintenance}
+                      icon="emergency"
+                      title={
+                        <>
+                          NABH
+                          <br />
+                          Calibration
+                        </>
+                      }
+                      description="We ensures medical equipment meets standards set by the Medical Board."
+                    />
+                    <RotatingCardBack
+                      image={HospitalMaintenance}
+                      title="What do we offer?"
+                      description="We ensure compliance with accreditation standards, guaranteeing accurate and safe healthcare delivery in line with regulatory requirements."
                     />
                   </RotatingCard>
                 </Grid>
@@ -226,12 +239,7 @@ function Information() {
                     <RotatingCardBack
                       image={HospitalMaintenance}
                       title="What do we offer?"
-                      description="Our equipment rental service offers healthcare providers access to a wide range of high-quality medical equipment on a short-term or long-term basis. This allows hospitals, clinics, and other healthcare facilities to meet their operational needs without the heavy upfront costs associated with purchasing equipment. From diagnostic tools to life-saving machines, we ensure that all rental equipment is well-maintained, regularly calibrated, and fully functional, helping healthcare providers focus on delivering exceptional patient care."
-                      //   action={{
-                      //     type: "internal",
-                      //     route: "/sections/page-sections/page-headers",
-                      //     label: "start with header",
-                      //   }}
+                      description="We provide equipment rental services, offering high-quality, well-maintained medical equipment on flexible terms to ensure operational efficiency without heavy upfront costs."
                     />
                   </RotatingCard>
                 </Grid>
@@ -246,20 +254,15 @@ function Information() {
                         <>
                           On-site
                           <br />
-                          Service Support
+                          Support
                         </>
                       }
-                      description="We offer reliable onsite service support to ensure seamless operation and maintenance of your equipment and systems."
+                      description="We ensure seamless operation, maintenance, and quick resolution of issues with your equipment."
                     />
                     <RotatingCardBack
                       image={HospitalMaintenance}
                       title="What do we offer?"
-                      description="Our onsite service support provides prompt, professional assistance directly at your location, ensuring the smooth functioning of your equipment and systems. Whether it's routine maintenance, urgent repairs, or troubleshooting, our skilled technicians are available to address issues swiftly, minimizing downtime and disruptions. By offering personalized, on-the-spot service, we help organizations maintain operational efficiency, reduce equipment failure risks, and improve overall performance."
-                      //   action={{
-                      //     type: "internal",
-                      //     route: "/sections/page-sections/page-headers",
-                      //     label: "start with header",
-                      //   }}
+                      description="We provide prompt onsite service support, ensuring quick maintenance, repairs, and troubleshooting to minimize downtime and keep operations running smoothly."
                     />
                   </RotatingCard>
                 </Grid>
@@ -288,7 +291,7 @@ function Information() {
                     <RotatingCardBack
                       image={HospitalMaintenance}
                       title="What do we offer?"
-                      description="Comprehensive AMC services for regular maintenance and support to extend the life and reliability of medical equipment."
+                      description="We offer comprehensive AMC services, providing prompt maintenance, regular checks, expert feedback, and consultation to ensure optimal performance and reliability."
                     />
                   </RotatingCard>
                 </Grid>
@@ -311,7 +314,7 @@ function Information() {
                     <RotatingCardBack
                       image={HospitalMaintenance}
                       title="What do we offer?"
-                      description="Custom training programs to upskill staff in medical equipment operation and safety protocols."
+                      description="We provide custom training programs to upskill staff in medical equipment operation, safety protocols, and compliance with industry standards."
                     />
                   </RotatingCard>
                 </Grid>
@@ -341,7 +344,7 @@ function Information() {
                     <RotatingCardBack
                       image={HospitalMaintenance}
                       title="What do we offer?"
-                      description="Well-tested refurbished equipment offering an economical alternative for clinics and hospitals."
+                      description="We offer well-tested refurbished equipment, providing an affordable alternative for clinics and hospitals while maintaining high quality standards."
                     />
                   </RotatingCard>
                 </Grid>
@@ -359,12 +362,12 @@ function Information() {
                           Support
                         </>
                       }
-                      description="Quick and reliable standby support for unexpected breakdowns."
+                      description="Quick and reliable standby support during emergencies."
                     />
                     <RotatingCardBack
                       image={HospitalMaintenance}
                       title="What do we offer?"
-                      description="24/7 standby support services to address equipment issues and reduce downtime during emergencies."
+                      description="We promise 24/7 standby support services, addressing equipment issues promptly to minimize downtime and ensure continuous operation during emergencies."
                     />
                   </RotatingCard>
                 </Grid>

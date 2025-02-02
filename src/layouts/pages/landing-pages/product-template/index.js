@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Material Kit 2 React pages
-import ProductTemplate from "pages/LandingPages/ProductTemplate.js";
+import ProductTemplate from "pages/LandingPages/ProductTemplate";
 
 export default function ProductTemplatePage() {
   return <ProductTemplate />;

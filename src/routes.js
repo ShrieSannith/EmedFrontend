@@ -455,22 +455,29 @@ const routes = [
   //   ],
   // },
   {
+    name: "About us",
+    icon: <InfoIcon />,
+    dropdown: true,
+    collapse: [
+      {
+        name: "About Us",
+        icon: <InfoIcon />,
+        route: "/pages/landing-pages/about-us",
+        component: <AboutUs />,
+      },
+      {
+        name: "Contact Us",
+        icon: <ContactMailIcon />,
+        route: "/pages/landing-pages/contact-us",
+        component: <ContactUs />,
+      },
+    ],
+  },
+  {
     name: "Services",
     icon: <ViewDayIcon />,
     route: "/pages/landing-pages/services",
     component: <ServicePage />,
-  },
-  {
-    name: "About Us",
-    icon: <InfoIcon />,
-    route: "/pages/landing-pages/about-us",
-    component: <AboutUs />,
-  },
-  {
-    name: "Contact Us",
-    icon: <ContactMailIcon />,
-    route: "/pages/landing-pages/contact-us",
-    component: <ContactUs />,
   },
 ];
 
