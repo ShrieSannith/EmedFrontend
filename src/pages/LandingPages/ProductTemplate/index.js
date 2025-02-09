@@ -20,14 +20,14 @@ import footerRoutes from "footer.routes";
 function ProductTemplate() {
   const isMobile = useMediaQuery("(max-width:768px)");
   const products = [
-    "Anaesthesia Machine",
-    "OT table",
-    "OT Light",
+    "Stainless Steel Modular OT",
+    "Anesthesia Workstation",
+    "LED OT Light",
     "Patient Monitor",
-    "Pulseoxymeter",
-    "Paper Roll",
-    "ECG",
-    "Ultrasound",
+    "High Frequency X-rays",
+    "Surgical Diathermy",
+    "ECG Machine",
+    "Defibrillator",
   ];
 
   return (
@@ -63,7 +63,24 @@ function ProductTemplate() {
       {/* Main Content Area */}
       <br />
       <br />
-      <br />
+
+      <ImageHeader />
+      <Box
+        sx={{
+          padding: "10px",
+          marginLeft: "10px",
+          display: "grid",
+          gap: "5px",
+          gridTemplateColumns: isMobile ? "1fr" : "1fr 3fr", // Switch to block layout on mobile
+        }}
+      >
+        <Grid item xs={12} sm={6} style={{ margin: "30px" }}>
+          <Accordion />
+        </Grid>
+        <Grid item xs={12} sm={6} style={{ margin: "10px" }}>
+          <Info />
+        </Grid>
+      </Box>
       <Box
         sx={{
           padding: 2,
@@ -82,7 +99,7 @@ function ProductTemplate() {
             marginBottom: 1,
           }}
         >
-          Top Products
+          Frequently bought
         </Typography>
         <Divider sx={{ marginBottom: 2 }} />
         {/* Grid of Products */}
@@ -118,25 +135,8 @@ function ProductTemplate() {
           })}
         </Grid>
       </Box>
-      <ImageHeader />
-      <Box
-        sx={{
-          padding: "10px",
-          marginLeft: "10px",
-          display: "grid",
-          gap: "5px",
-          gridTemplateColumns: isMobile ? "1fr" : "1fr 3fr", // Switch to block layout on mobile
-        }}
-      >
-        <Grid item xs={12} sm={6} style={{ margin: "30px" }}>
-          <Accordion />
-        </Grid>
-        <Grid item xs={12} sm={6} style={{ margin: "10px" }}>
-          <Info />
-        </Grid>
-      </Box>
 
-      <MKBox pt={6} px={1} mt={6}>
+      <MKBox pt={6} px={1} mt={2}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>
     </>
