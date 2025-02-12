@@ -28,7 +28,7 @@ import RotatingCardFront from "examples/Cards/RotatingCard/RotatingCardFront";
 import RotatingCardBack from "examples/Cards/RotatingCard/RotatingCardBack";
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 
-import medical1 from "../../../../assets/images/Prima-320.png";
+import medical1 from "../../../images/Prima-320.png";
 
 // Images
 import bgFront from "assets/images/rotating-card-bg-front.jpeg";
