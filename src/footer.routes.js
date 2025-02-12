@@ -11,14 +11,14 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import MKTypography from "components/MKTypography";
 
 // Images
-import logo from "assets/images/logo_transparent.png";
+// import logo from "assets/images/logo_transparent.png";
 
 const date = new Date().getFullYear();
 
 export default {
   brand: {
     name: "EMED BIOMEDICALS",
-    image: logo,
+    image: "/logo_transparent.png",
     route: "/",
   },
   socials: [
