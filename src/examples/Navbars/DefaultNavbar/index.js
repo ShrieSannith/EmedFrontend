@@ -119,6 +119,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
     "Keypad",
   ];
   const handleSearchChange = (e) => {
+    e.stopPropagation(); // Prevent event from bubbling up
     const value = e.target.value;
     setSearchTerm(value);
 
