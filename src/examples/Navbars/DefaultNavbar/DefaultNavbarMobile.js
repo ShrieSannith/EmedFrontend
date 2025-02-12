@@ -99,6 +99,7 @@ function DefaultNavbarMobile({ routes, open }) {
     "Keypad",
   ];
   const handleSearchChange = (e) => {
+    e.stopPropagation(); // Prevent event from bubbling up
     const value = e.target.value;
     setSearchTerm(value);
 
