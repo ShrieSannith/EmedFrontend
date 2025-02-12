@@ -233,62 +233,64 @@ function DefaultNavbarMobile({ routes, open }) {
   );
 
   return (
-    <Collapse in={Boolean(open)} timeout="auto" unmountOnExit>
-      <MKBox width="calc(100% + 1.625rem)" my={2} ml={-2}>
-        {renderNavbarItems}
-        <Box sx={{ display: "flex", alignItems: "center", position: "relative" }}>
-          <InputBase
-            value={searchTerm}
-            onChange={handleSearchChange}
-            placeholder="Search..."
-            sx={{
-              backgroundColor: "white",
-              borderRadius: 1,
-              padding: "5px 10px",
-              width: "200px",
-              fontSize: "15px",
-            }}
-          />
+    <>
+      <Box sx={{ display: "flex", alignItems: "center", position: "relative" }}>
+        <InputBase
+          value={searchTerm}
+          onChange={handleSearchChange}
+          placeholder="Search..."
+          sx={{
+            backgroundColor: "white",
+            borderRadius: 1,
+            padding: "0px 10px",
+            width: "200px",
+            fontSize: "15px",
+          }}
+        />
 
-          {openSuggestions && filteredSuggestions.length > 0 && (
-            <Box
-              sx={{
-                position: "absolute",
-                top: "40px",
-                left: 0,
-                right: 0,
-                backgroundColor: "#fff",
-                borderRadius: 1,
-                boxShadow: 3,
-                maxHeight: "200px", // Set max height for vertical scrolling
-                zIndex: 1,
-                display: "flex",
-                flexDirection: "column", // Arrange suggestions vertically
-                overflowY: "auto", // Enable vertical scrolling
-                overflowX: "hidden", // Enable horizontal scrolling
-                padding: "5px", // Add padding for spacing
-                color: "white", //
-              }}
-            >
-              {filteredSuggestions.map((suggestion, index) => (
-                <MenuItem
-                  key={index}
-                  onClick={() => handleSuggestionClick(suggestion)}
-                  sx={{
-                    fontSize: "14px",
-                    padding: "5px 10px",
-                    cursor: "pointer",
-                    marginBottom: "5px", // Add margin for spacing between items
-                  }}
-                >
-                  {suggestion}
-                </MenuItem>
-              ))}
-            </Box>
-          )}
-        </Box>
-      </MKBox>
-    </Collapse>
+        {openSuggestions && filteredSuggestions.length > 0 && (
+          <Box
+            sx={{
+              position: "absolute",
+              top: "40px",
+              left: 0,
+              right: 0,
+              backgroundColor: "#fff",
+              borderRadius: 1,
+              boxShadow: 3,
+              maxHeight: "200px", // Set max height for vertical scrolling
+              zIndex: 1,
+              display: "flex",
+              flexDirection: "column", // Arrange suggestions vertically
+              overflowY: "auto", // Enable vertical scrolling
+              overflowX: "hidden", // Enable horizontal scrolling
+              padding: "5px", // Add padding for spacing
+              color: "white", //
+            }}
+          >
+            {filteredSuggestions.map((suggestion, index) => (
+              <MenuItem
+                key={index}
+                onClick={() => handleSuggestionClick(suggestion)}
+                sx={{
+                  fontSize: "14px",
+                  padding: "5px 10px",
+                  cursor: "pointer",
+                  marginBottom: "5px", // Add margin for spacing between items
+                }}
+              >
+                {suggestion}
+              </MenuItem>
+            ))}
+          </Box>
+        )}
+      </Box>
+      <Collapse in={Boolean(open)} timeout="auto" unmountOnExit>
+        <MKBox width="calc(100% + 1.625rem)" my={2} ml={-2}>
+          {renderNavbarItems}
+        </MKBox>
+      </Collapse>
+    </>
   );
 }
 
