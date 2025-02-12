@@ -28,7 +28,7 @@ import RotatingCardFront from "examples/Cards/RotatingCard/RotatingCardFront";
 import RotatingCardBack from "examples/Cards/RotatingCard/RotatingCardBack";
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 
-import medical1 from "../../../images/Prima-320.png";
+const medical1 = "https://www.penlon.com/app/uploads/2024/02/Prima_320-1920px.png";
 
 // Images
 import bgFront from "assets/images/rotating-card-bg-front.jpeg";
