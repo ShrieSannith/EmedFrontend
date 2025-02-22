@@ -96,7 +96,7 @@ function Products() {
             Look for the products you need!
           </MKTypography>
           <MKTypography variant="body2" color="text" sx={{ fontSize: "0.75rem" }}>
-            **Images are for illustration only. Exact details available on inquiry.
+            **Images are for illustration only. Exact details available on enquiry.
           </MKTypography>
 
           {/* Search Box */}

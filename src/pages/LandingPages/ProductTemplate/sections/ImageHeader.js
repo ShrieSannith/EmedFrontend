@@ -134,6 +134,9 @@ function Contact() {
                     <MKTypography variant="h2" mb={1} sx={{ fontSize: "25px" }}>
                       {product.name}
                     </MKTypography>
+                    <MKTypography variant="h10" mb={1} sx={{ fontSize: "12px" }}>
+                      **Images are for illustration only. Exact details available on enquiry.
+                    </MKTypography>
                     <MKTypography variant="body1" color="text" mb={2} sx={{ fontSize: "17px" }}>
                       Enquiry Form
                     </MKTypography>

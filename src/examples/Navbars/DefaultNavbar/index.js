@@ -67,7 +67,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
   const openMobileNavbar = () => setMobileNavbar(!mobileNavbar);
 
   const products = [
-    "PPGI/EPOXY Modular OT",
+    "PPGI/ EPOXY Modular OT",
     "Stainless Steel Modular OT",
     "Medical Gas Pipeline",
     "OT Table",
@@ -132,8 +132,12 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
 
   const handleSuggestionClick = (suggestion) => {
     // Replace whitespaces with hyphens and convert to lowercase
-    const formattedSuggestion = suggestion.replace(/\s+/g, "-").toLowerCase();
+    const formattedSuggestion = suggestion
+      .replace(/[^a-zA-Z0-9]+/g, "-") // Replace all non-alphanumeric characters with '-'
+      .replace(/^-+|-+$/g, "") // Remove leading/trailing '-'
+      .toLowerCase();
 
+    console.log(formattedSuggestion);
     setSearchTerm(suggestion);
     setOpenSuggestions(false);
 
