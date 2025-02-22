@@ -7,6 +7,11 @@ import { Box, Card, CardMedia, CardContent, Typography, Button, Grid } from "@mu
 import { ThemeProvider } from "@mui/material/styles"; // Import ThemeProvider
 import customTheme from "../../../assets/theme/customTheme"; // Import the custom theme
 
+//images
+import Handshake from "./assets/handshake.jpg";
+import Service from "./assets/service.avif";
+import HospitalMaintenance from "./assets/Hospital_Maintenance.jpg";
+import Training from "./assets/training.avif";
 const InfoCard = ({ image, heading, buttonLabel, isVisible, delay, href }) => {
   return (
     <a
@@ -48,7 +53,12 @@ const InfoCard = ({ image, heading, buttonLabel, isVisible, delay, href }) => {
             padding: "10px",
           }}
         >
-          <Typography gutterBottom variant="h5" component="div" sx={{ color: "white !important" }}>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{ color: "white !important", fontSize: "23px" }}
+          >
             {heading}
           </Typography>
         </CardContent>
@@ -60,29 +70,25 @@ const InfoCard = ({ image, heading, buttonLabel, isVisible, delay, href }) => {
 const CardSection = () => {
   const cardData = [
     {
-      image:
-        "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image: Handshake,
       heading: "Equipment Sales",
       buttonLabel: "Learn More",
       href: "/equipment-sales", // Add href for navigation
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1676630444903-163fe485c5d1?q=80&w=2026&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image: Service,
       heading: "Equipment Service",
       buttonLabel: "Learn More",
       href: "/equipment-service", // Add href for navigation
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image: HospitalMaintenance,
       heading: "Hospital Maintenance",
       buttonLabel: "Learn More",
       href: "/modular-ot-setup", // Add href for navigation
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image: Training,
       heading: "Practical Training",
       buttonLabel: "Learn More",
       href: "/industry-training", // Add href for navigation

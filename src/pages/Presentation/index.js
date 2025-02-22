@@ -5,6 +5,9 @@
 import React, { useState } from "react"; // Add this line
 import { CardMedia, CardContent, Typography } from "@mui/material";
 
+// Import EmailJS
+import emailjs from "@emailjs/browser";
+
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -27,6 +30,7 @@ import CardSection from "pages/Presentation/sections/Services";
 import MOTMGPS from "pages/Presentation/sections/MOTMGPS";
 import Special from "pages/Presentation/sections/special";
 import Quickapply from "pages/Presentation/sections/Quickapply";
+// import Information from "pages/Presentation/sections/information";
 // Presentation page components
 // import BuiltByDevelopers from "pages/Presentation/components/BuiltByDevelopers";
 
@@ -52,14 +56,41 @@ function Presentation() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!service) {
+      alert("Please select a service.");
+      return;
+    }
     handleOpen(); // Open modal on form submit
   };
 
-  const handleModalSubmit = (e) => {
+  const handleModalSubmit = async (e) => {
     e.preventDefault();
-    // Handle the form submission logic here (e.g., send data to the server)
-    console.log({ clientName, phoneNumber, service, additionalInfo });
-    handleClose(); // Close the modal after submission
+    if (!clientName || !phoneNumber) {
+      alert("Name and Phone Number are mandatory.");
+      return;
+    }
+
+    const templateParams = {
+      clientName,
+      phoneNumber,
+      service,
+      additionalInfo,
+    };
+
+    try {
+      const response = await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      );
+      console.log("Email sent successfully", response.status, response.text);
+      alert("Email sent successfully");
+      handleClose(); // Close the modal after submission
+    } catch (error) {
+      console.error("Error sending email:", error);
+      alert("Failed to send email");
+    }
   };
 
   return (
@@ -126,29 +157,6 @@ function Presentation() {
               }}
               className="bannerForms"
             >
-              {/* <TextField
-                placeholder="Client Name"
-                variant="outlined"
-                size="small"
-                value={clientName}
-                onChange={(e) => setClientName(e.target.value)}
-                sx={{
-                  backgroundColor: "rgba(255, 255, 255, 0.5)",
-                  marginRight: "10px",
-                }}
-              /> */}
-              {/* <TextField
-                placeholder="Phone Number"
-                type="text"
-                variant="outlined"
-                size="small"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                sx={{
-                  backgroundColor: "rgba(255, 255, 255, 0.5)",
-                  marginRight: "10px",
-                }}
-              /> */}
               <select
                 value={service}
                 onChange={(e) => setService(e.target.value)}
@@ -156,27 +164,28 @@ function Presentation() {
                   backgroundColor: "rgba(255, 255, 255, 0.5)",
                   marginRight: "10px",
                   padding: "10px",
-
                   border: "1px solid #ccc",
                   width: "100%",
                   maxWidth: "400px",
                   fontSize: "14px",
                   boxSizing: "border-box",
                 }}
+                required
               >
                 <option value="" disabled>
                   Select a Service
                 </option>
                 <option value="Hospital Maintenance">Hospital Maintenance</option>
                 <option value="NABH Calibration Services">NABH Calibration Services</option>
-                <optgroup label="Equipment for Rent">
+                <option value="NABH Calibration Services">Equipment for Rent</option>
+                {/* <optgroup label="Equipment for rent">
                   <option value="Ventilator">Ventilator</option>
                   <option value="Monitor">Monitor</option>
                   <option value="Syringe Infusion Pump">Syringe Infusion Pump</option>
                   <option value="Blanket Warmer">Blanket Warmer</option>
                   <option value="ECG Machine">ECG Machine</option>
-                  <option value="Xray Portable">Xray Portable</option>
-                </optgroup>
+                  <option value="Xray Portable">Xray Portable</option>w 
+                </optgroup> */}
                 <option value="On-site Service Support">On-site Service Support</option>
                 <option value="AMC Medical Equipment">AMC Medical Equipment</option>
                 <option value="Practical Training Programs">Practical Training Programs</option>
@@ -215,6 +224,7 @@ function Presentation() {
           }}
         >
           <form
+            onSubmit={handleModalSubmit}
             style={{
               maxWidth: "500px",
               margin: "0 auto",
@@ -240,7 +250,8 @@ function Presentation() {
               <input
                 type="text"
                 id="name"
-                value={name}
+                value={clientName}
+                onChange={(e) => setClientName(e.target.value)}
                 placeholder="Enter your name"
                 style={{
                   width: "100%",
@@ -249,11 +260,11 @@ function Presentation() {
                   border: "1px solid #ccc",
                   borderRadius: "4px",
                 }}
+                required
               />
             </div>
 
             {/* Phone Number Field */}
-
             <div style={{ marginBottom: "16px" }}>
               <label
                 htmlFor="phone"
@@ -269,8 +280,8 @@ function Presentation() {
               <PhoneInput
                 international
                 defaultCountry="IN"
-                value={phone}
-                onChange={setPhone}
+                value={phoneNumber}
+                onChange={setPhoneNumber}
                 placeholder="Enter phone number"
                 style={{
                   width: "100%",
@@ -279,6 +290,7 @@ function Presentation() {
                   border: "1px solid #ccc",
                   borderRadius: "4px",
                 }}
+                required
               />
             </div>
 

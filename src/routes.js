@@ -257,11 +257,7 @@ const routes = [
             route: "/products/lead-shield",
             component: <ProductTemplatePage productName="Lead Shield" />,
           },
-          {
-            name: "Lead Partition",
-            route: "/products/lead-partition",
-            component: <ProductTemplatePage productName="Lead Partition" />,
-          },
+
           {
             name: "Thyroid Collar",
             route: "/products/thyroid-collar",

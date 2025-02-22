@@ -44,6 +44,41 @@ import footerRoutes from "footer.routes";
 import bgImage from "assets/images/Xray.jpg";
 
 function AboutUs() {
+  // return (
+  //   <>
+  //     <DefaultNavbar
+  //       routes={routes}
+  //       action={{
+  //         type: "external",
+  //         route: "https://www.creative-tim.com/product/material-kit-react",
+  //         label: "free download",
+  //         color: "info",
+  //       }}
+  //       sticky
+  //     />
+  // <div
+  //   style={{
+  //     position: "absolute",
+  //     top: 0,
+  //     left: 0,
+  //     width: "100vw",
+  //     height: "100vh",
+  //     overflow: "hidden",
+  //   }}
+  // >
+  //   <iframe
+  //     src="/EMED PROFILE.pdf#toolbar=0"
+  //     width="100%"
+  //     height="100%"
+  //     style={{
+  //       border: "none",
+  //     }}
+  //   />
+  // </div>;
+
+  //   </>
+  // );
+
   return (
     <>
       <DefaultNavbar
@@ -132,6 +167,7 @@ function AboutUs() {
         {/* <Featuring /> */}
         {/* <Newsletter /> */}
       </Card>
+
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>

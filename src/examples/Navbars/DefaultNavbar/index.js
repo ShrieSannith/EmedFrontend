@@ -616,7 +616,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
               <InputBase
                 value={searchTerm}
                 onChange={handleSearchChange}
-                placeholder="Search..."
+                placeholder="Search Products..."
                 sx={{
                   backgroundColor: "white",
                   borderRadius: 1,

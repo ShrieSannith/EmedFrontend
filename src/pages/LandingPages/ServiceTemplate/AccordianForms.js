@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
+import emailjs from "emailjs-com";
 import {
   Box,
   Typography,
@@ -25,7 +26,7 @@ function ServiceAccordion() {
     phone: "",
     service: "",
   });
-
+  const [statusMessage, setStatusMessage] = useState("");
   const services = [
     "Hospital Maintenance",
     "NABH Calibration",
@@ -46,11 +47,41 @@ function ServiceAccordion() {
       [name]: value,
     }));
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
+
+    if (!formData.clientName || !phone || !formData.service) {
+      setStatusMessage("Please fill in all required fields.");
+      return;
+    }
+
+    const templateParams = {
+      clientName: formData.clientName,
+      phoneNumber: phone, // Matches template
+      service: formData.service,
+      additionalInfo: formData.additionalInfo || "No additional info provided", // Matches template
+    };
+
+    emailjs
+      .send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        (response) => {
+          setStatusMessage("Message sent successfully!");
+          setFormData({ clientName: "", service: "", additionalInfo: "" });
+          setPhone("");
+        },
+        (error) => {
+          setStatusMessage("Failed to send message. Try again later.");
+          console.error("EmailJS Error:", error);
+        }
+      );
   };
+
   const isMobile = useMediaQuery("(max-width:1000px)");
   return (
     <>
@@ -123,8 +154,8 @@ function ServiceAccordion() {
                 label="Name"
                 variant="outlined"
                 fullWidth
-                name="name"
-                value={formData.name}
+                name="clientName" // Matches template
+                value={formData.clientName}
                 onChange={handleChange}
                 required
                 sx={{ mb: 0, backgroundColor: "#fff", color: "black" }}
@@ -174,14 +205,13 @@ function ServiceAccordion() {
               </select>
             </Grid>
 
-            {/* Message Input (Not Mandatory) */}
             <Grid item xs={12}>
               <TextField
-                label="Message (Optional)"
+                label="Additional Info (Optional)"
                 variant="outlined"
                 fullWidth
-                name="message"
-                value={formData.message}
+                name="additionalInfo" // Matches template
+                value={formData.additionalInfo}
                 onChange={handleChange}
                 multiline
                 rows={4}
@@ -200,6 +230,14 @@ function ServiceAccordion() {
                 Submit
               </Button>
             </Grid>
+
+            {statusMessage && (
+              <Grid item xs={12}>
+                <p style={{ color: statusMessage.includes("successfully") ? "green" : "red" }}>
+                  {statusMessage}
+                </p>
+              </Grid>
+            )}
           </Grid>
         </form>
       </Box>

@@ -56,7 +56,7 @@ function About() {
             variant="body1"
             color="black"
             opacity={0.8}
-            mb={2}
+            mb={6}
             sx={{ fontSize: "17px" }}
           >
             <br />
@@ -74,14 +74,47 @@ function About() {
             that help us in carrying out repair and maintenance works. We have been successful in
             fulfilling the diverse requirements of clients based in India and the Indian
             Subcontinent by our quality range. <br /> <br />
-            Our prestigious client list includes BRS Hospital, Nungambakkam, Chennai, BharathiRaja
-            Hospitals, T. Nagar, Chennai, Pallava Hospital, Ashok Nagar, Chennai, Pallavaram
-            Children Hospital, Pallavaram, Chennai, and others. <br /> <br />
             Our organization has progressed to a great extent under the able leadership of the
             mentor, ‘Mr. Nithya Kumar’, who holds vast experience in this domain. He has motivated
             us to take tough challenges and acquire outstanding results. Owing to his support and
             motivation, we have established our distinct identity in the market.
           </MKTypography>
+
+          {/* <MKTypography variant="h4" color="black" fontWeight="bold"></MKTypography>
+          <MKTypography variant="h1" color="black" mb={6} sx={{ fontSize: "30px" }}>
+            Project Profile
+          </MKTypography>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              width: "100%",
+            }}
+          >
+            <div
+              style={{
+                width: "80vw",
+                height: "80vh", // Adjust height as needed
+                overflow: "hidden",
+                margin: "0px auto", // Centers horizontally
+                border: "1px solid #ccc", // Optional: Adds a border for better visibility
+                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Optional: Adds shadow
+                marginBottom: "10px",
+              }}
+            >
+              <iframe
+                src="/EMED PROFILE.pdf#toolbar=0"
+                width="100%"
+                height="100%"
+                style={{
+                  border: "none",
+                }}
+              />
+            </div>
+          </div> */}
+
           <MKTypography
             component="a"
             href="/pages/landing-pages/about-us"

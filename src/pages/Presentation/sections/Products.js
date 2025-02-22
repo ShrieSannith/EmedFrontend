@@ -95,6 +95,9 @@ function Products() {
           <MKTypography variant="body1" color="text">
             Look for the products you need!
           </MKTypography>
+          <MKTypography variant="body2" color="text" sx={{ fontSize: "0.75rem" }}>
+            **Images are for illustration only. Exact details available on inquiry.
+          </MKTypography>
 
           {/* Search Box */}
           <TextField
