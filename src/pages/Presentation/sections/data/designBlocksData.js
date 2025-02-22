@@ -63,7 +63,7 @@ export default [
       },
 
       {
-        image: "/ICU_Ventilator.jpeg",
+        image: "/ICU_VENTILATOR.jpeg",
         name: "Intensive Care Ventilator",
         count: 6,
         route: "/products/icu-ventilator",
