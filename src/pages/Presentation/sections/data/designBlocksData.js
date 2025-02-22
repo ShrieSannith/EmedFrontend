@@ -19,31 +19,31 @@ export default [
     description: "Explore our range of Modular OT equipment designed for safety and precision.",
     items: [
       {
-        image: "/images/OT_TABLE.png",
+        image: "/OT_TABLE.png",
         name: "OT TABLE",
         count: 10,
         route: "/products/ot-table",
       },
       {
-        image: "/images/OT_LIGHT.png",
+        image: "/OT_LIGHT.png",
         name: "LED OT LIGHT",
         count: 14,
         route: "/products/led-ot-light",
       },
       {
-        image: "/images/surgical_diathermy.webp",
+        image: "/surgical_diathermy.webp",
         name: "Surgical Diarhermy",
         count: 10,
         route: "/products/surgical-diathermy",
       },
       {
-        image: "/images/Anesthesia.jpeg",
+        image: "/Anesthesia.jpeg",
         name: "Anesthesia Workstation",
         count: 9,
         route: "/products/anesthesia-workstation",
       },
       {
-        image: "/images/autoclave.jpeg",
+        image: "/autoclave.jpeg",
         name: "Autoclave",
         count: 11,
         route: "/products/autoclave-suction-machine",
@@ -56,38 +56,38 @@ export default [
     description: "Advanced solutions for critical care management.",
     items: [
       {
-        image: "/images/Patient_Monitor.jpg",
+        image: "/Patient_Monitor.jpg",
         name: "Patient Monitor",
         count: 6,
         route: "/products/patient-monitor",
       },
 
       {
-        image: "/images/ICU_Ventilator.jpeg",
+        image: "/ICU_Ventilator.jpeg",
         name: "Intensive Care Ventilator",
         count: 6,
         route: "/products/icu-ventilator",
       },
       {
-        image: "/images/ECG.jpg",
+        image: "/ECG.jpg",
         name: "ECG",
         count: 6,
         route: "/products/ecg-machine",
       },
       {
-        image: "/images/Defibrillator.webp",
+        image: "/Defibrillator.webp",
         name: "Defibrillator",
         count: 6,
         route: "/products/defibrillator",
       },
       {
-        image: "/images/Infusion_Pump.webp",
+        image: "/Infusion_Pump.webp",
         name: "Infusion Pump",
         count: 6,
         route: "/products/infusion-pump",
       },
       {
-        image: "/images/Syringe_Pump.webp",
+        image: "/Syringe_Pump.webp",
         name: "Syringe Pump",
         count: 6,
         route: "/products/syringe-pump",
@@ -99,25 +99,25 @@ export default [
     description: "Quality equipment for efficient Radiology operations.",
     items: [
       {
-        image: "/images/HF_XRAY.webp",
+        image: "/HF_XRAY.webp",
         name: "High Frequency X-rays",
         count: 4,
         route: "/products/high-frequency-x-rays",
       },
       {
-        image: "/images/C-ARM.jpg",
+        image: "/C-ARM.jpg",
         name: "C-Arm Machine",
         count: 2,
         route: "/products/c-arm-machine",
       },
       {
-        image: "/images/CR.webp",
+        image: "/CR.webp",
         name: "Computed Radiography",
         count: 4,
         route: "/products/cr-computed-radiography",
       },
       {
-        image: "/images/DR.avif",
+        image: "/DR.avif",
         name: "Digital Radiography",
         count: 2,
         route: "/products/dr-digital-radiography",
