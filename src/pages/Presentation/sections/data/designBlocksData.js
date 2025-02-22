@@ -31,7 +31,7 @@ export default [
         route: "/products/led-ot-light",
       },
       {
-        image: "/surgical_diathermy.webp",
+        image: "/Surgical_Diathermy.webp",
         name: "Surgical Diarhermy",
         count: 10,
         route: "/products/surgical-diathermy",
@@ -43,7 +43,7 @@ export default [
         route: "/products/anesthesia-workstation",
       },
       {
-        image: "/autoclave.jpeg",
+        image: "/Autoclave.jpeg",
         name: "Autoclave",
         count: 11,
         route: "/products/autoclave-suction-machine",
