@@ -5,7 +5,8 @@
   "author": "Creative Tim",
   "license": "See license in https://www.creative-tim.com/license",
   "description": "React version of Material Kit 2 by Creative Tim",
-  "homepage": "https://ShrieSannith.github.io/EmedFrontend",
+    "homepage": ".",
+  // "homepage": "https://ShrieSannith.github.io/EmedFrontend",
   "bugs": {
     "url": "https://github.com/creativetimofficial/ct-material-kit-react/issues"
   },
