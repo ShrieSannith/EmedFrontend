@@ -4,6 +4,7 @@
 // @mui material components
 import React, { useState } from "react"; // Add this line
 import { CardMedia, CardContent, Typography } from "@mui/material";
+import { AppBar, Toolbar, IconButton, InputBase, MenuItem } from "@mui/material";
 
 // Import EmailJS
 import emailjs from "@emailjs/browser";
@@ -42,8 +43,12 @@ import PhoneInput from "react-phone-number-input";
 // Images
 import bgImage from "assets/images/OT_generated_2.png";
 import "../../App.css";
-
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 function Presentation() {
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const [openSuggestions, setOpenSuggestions] = useState(false);
   const [phone, setPhone] = useState("");
   const [open, setOpen] = React.useState(false);
   const [clientName, setClientName] = React.useState("");
@@ -53,6 +58,81 @@ function Presentation() {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const products = [
+    "PPGI/EPOXY Modular OT",
+    "Stainless Steel Modular OT",
+    "Medical Gas Pipeline",
+    "OT Table",
+    "LED OT Light",
+    "Anesthesia Workstation",
+    "Surgical Diathermy",
+    "Vessel Sealer",
+    "Autoclave / Suction Machine",
+    "Patient Monitor",
+    "BiPAP/CPAP Machine",
+    "ICU Ventilator",
+    "ICU/Transport Ventilator",
+    "Defibrillator",
+    "Infusion Pump",
+    "Syringe Pump",
+    "ECG Machine",
+    "Mobile / Stationary X-rays",
+    "High Frequency X-rays",
+    "C-Arm Machine",
+    "CR – Computed Radiography",
+    "DR – Digital Radiography",
+    "Patient Monitor Accessories",
+    "Surgical Diathermy Accessories",
+    "Ventilator Circuits",
+    "Bains Circuit",
+    "ECG Cable/Electrodes",
+    "O2 Flow Meter",
+    "O2 Regulator",
+    "O2/N2O Cylinders",
+    "Suction Jars",
+    "Chest Stand",
+    "Lead Apron",
+    "Lead Shield",
+    "Lead Partition",
+    "Thyroid Collar",
+    "Flow Sensors",
+    "O2 Sensors",
+    "Printer Rollers",
+    "Printer Circuit Boards",
+    "Switches",
+    "Transducers",
+    "Electrodes",
+    "Lead-acid Batteries",
+    "NICD/NIMH Batteries",
+    "Lithium-ion Batteries",
+    "General Surgical Instruments",
+    "Orthopedic Surgical Instruments",
+    "Paper Roll",
+    "Keypad",
+  ];
+  const handleSearchChange = (e) => {
+    e.stopPropagation(); // Prevent event from bubbling up
+    const value = e.target.value;
+    setSearchTerm(value);
+
+    // Filter the list based on search term (case insensitive)
+    const filtered = products.filter((item) => item.toLowerCase().includes(value.toLowerCase()));
+
+    setFilteredSuggestions(filtered);
+    setOpenSuggestions(value.length > 0); // Show suggestions if there's a search term
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    // Replace whitespaces with hyphens and convert to lowercase
+    const formattedSuggestion = suggestion.replace(/\s+/g, "-").toLowerCase();
+
+    setSearchTerm(suggestion);
+    setOpenSuggestions(false);
+
+    // Navigate with the formatted suggestion
+    navigate(`/products/${formattedSuggestion}`); // Modify based on your routing logic
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -203,6 +283,78 @@ function Presentation() {
                 Send
               </Button>
             </form>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                position: "relative",
+                backgroundColor: "rgba(255, 255, 255, 0.5)", // Translucent white
+                width: "100%", // Ensures responsiveness
+                maxWidth: "490px", // Limits max width
+                minWidth: "200px", // Prevents it from being too small
+                margin: "10px auto", // Centers it horizontally
+                borderRadius: 0, // Square corners
+                padding: "8px",
+                boxShadow: 3,
+                fontSize: "10px",
+
+                // Responsive Styles
+                "@media (max-width: 600px)": {
+                  fontSize: "8px", // Adjust font size for smaller screens
+                  padding: "6px", // Reduce padding on mobile
+                },
+              }}
+            >
+              <InputBase
+                value={searchTerm}
+                onChange={handleSearchChange}
+                placeholder="Search Products..."
+                sx={{
+                  backgroundColor: "white",
+                  borderRadius: 1,
+                  padding: "0px 10px",
+                  width: "100%",
+                  fontSize: "12px",
+                }}
+              />
+
+              {openSuggestions && filteredSuggestions.length > 0 && (
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: "40px",
+                    left: 0,
+                    right: 0,
+                    backgroundColor: "#fff",
+                    borderRadius: 1,
+                    boxShadow: 3,
+                    maxHeight: "200px", // Set max height for vertical scrolling
+                    zIndex: 10, // Ensure it's above other elements
+                    display: "flex",
+                    flexDirection: "column",
+                    overflowY: "auto",
+                    padding: "5px",
+                    color: "black", // Fixed text color to be visible
+                  }}
+                >
+                  {filteredSuggestions.map((suggestion, index) => (
+                    <MenuItem
+                      key={index}
+                      onClick={() => handleSuggestionClick(suggestion)}
+                      sx={{
+                        fontSize: "14px",
+                        padding: "8px 12px",
+                        cursor: "pointer",
+                        "&:hover": { backgroundColor: "#f0f0f0" }, // Highlight on hover
+                        "&:last-child": { marginBottom: 0 }, // Avoid unnecessary bottom spacing
+                      }}
+                    >
+                      {suggestion}
+                    </MenuItem>
+                  ))}
+                </Box>
+              )}
+            </Box>
           </Grid>
         </Container>
       </MKBox>
