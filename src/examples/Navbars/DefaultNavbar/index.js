@@ -63,7 +63,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
   const [arrowRef, setArrowRef] = useState(null);
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileView, setMobileView] = useState(false);
-
+  const [isSearchActive, setIsSearchActive] = useState(false); // NEW STATE
   const openMobileNavbar = () => setMobileNavbar(!mobileNavbar);
 
   const products = [
@@ -118,6 +118,12 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
     "Paper Roll",
     "Keypad",
   ];
+  const handleClearSearch = () => {
+    setSearchTerm("");
+    setOpenSuggestions(false);
+    setIsSearchActive(false); // Allow navbar to collapse
+  };
+
   const handleSearchChange = (e) => {
     e.stopPropagation(); // Prevent event from bubbling up
     const value = e.target.value;
@@ -675,7 +681,10 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             pl={1.5}
             color={transparent ? "white" : "inherit"}
             sx={{ cursor: "pointer" }}
-            onClick={openMobileNavbar}
+            onClick={() => {
+              handleClearSearch(); // Clears search input
+              openMobileNavbar(); // Toggles navbar open/close
+            }}
           >
             <Icon fontSize="default">{mobileNavbar ? "close" : "menu"}</Icon>
           </MKBox>
