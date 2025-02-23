@@ -255,7 +255,7 @@ function DefaultNavbarMobile({ routes, open }) {
 
   return (
     <Collapse
-      in={Boolean(open) || isSearchActive}
+      in={Boolean(open)}
       timeout="auto"
       unmountOnExit
       sx={{
@@ -266,11 +266,12 @@ function DefaultNavbarMobile({ routes, open }) {
         zIndex: 1200,
         backgroundColor: "background.paper",
         height: "var(--viewport-height, auto)",
+
         overflowY: "auto",
       }}
     >
       {" "}
-      <MKBox width="calc(100% + 1.625rem)" my={2} ml={-2}>
+      <MKBox width="calc(100% + 0 rem)" my={1} ml={2} mr={2}>
         {renderNavbarItems}
         <Box
           sx={{
@@ -289,7 +290,7 @@ function DefaultNavbarMobile({ routes, open }) {
             sx={{
               backgroundColor: "white",
               borderRadius: 1,
-              padding: "8px 12px",
+              padding: "12px",
               flex: 1,
               fontSize: "0.875rem",
               boxShadow: 1,
@@ -313,12 +314,12 @@ function DefaultNavbarMobile({ routes, open }) {
               sx={{
                 position: "fixed",
                 top: "120px",
-                left: "8px",
-                right: "8px",
+                left: "22px",
+                right: "20px",
                 backgroundColor: "background.paper",
                 borderRadius: 1,
                 boxShadow: 3,
-                maxHeight: "50vh",
+                maxHeight: "15vh",
                 zIndex: 1300,
                 overflowY: "auto",
                 padding: "4px",
