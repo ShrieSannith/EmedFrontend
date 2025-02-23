@@ -14,37 +14,44 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-
-import { useState } from "react";
-
-// react-router components
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
-// prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
-
-// @mui material components
 import Collapse from "@mui/material/Collapse";
 import MuiLink from "@mui/material/Link";
-
-// Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
-
-// Material Kit 2 React example components
 import DefaultNavbarDropdown from "examples/Navbars/DefaultNavbar/DefaultNavbarDropdown";
-
 import SearchIcon from "@mui/icons-material/Search";
 import { AppBar, Toolbar, IconButton, InputBase, Box, MenuItem } from "@mui/material";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 function DefaultNavbarMobile({ routes, open }) {
   const [collapse, setCollapse] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [openSuggestions, setOpenSuggestions] = useState(false);
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
-  const [isSearchActive, setIsSearchActive] = useState(false); // NEW STATE
-  const navigate = useNavigate(); // Hook to navigate programmatically
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.visualViewport) {
+        if (isInputFocused) {
+          window.scrollTo(0, 0);
+          document.documentElement.style.setProperty(
+            "--viewport-height",
+            `${window.visualViewport.height}px`
+          );
+        }
+      }
+    };
+
+    window.visualViewport?.addEventListener("resize", handleResize);
+    return () => window.visualViewport?.removeEventListener("resize", handleResize);
+  }, [isInputFocused]);
 
   const handleSetCollapse = (name) => (collapse === name ? setCollapse(false) : setCollapse(name));
   const products = [
@@ -100,34 +107,39 @@ function DefaultNavbarMobile({ routes, open }) {
     "Keypad",
   ];
   const handleSearchChange = (e) => {
-    e.stopPropagation(); // Prevent event from bubbling up
     const value = e.target.value;
     setSearchTerm(value);
-    setIsSearchActive(true); // Keep navbar open when searching
+    setIsSearchActive(true);
 
-    // Filter the list based on search term (case insensitive)
     const filtered = products.filter((item) => item.toLowerCase().includes(value.toLowerCase()));
-
     setFilteredSuggestions(filtered);
-    setOpenSuggestions(value.length > 0); // Show suggestions if there's a search term
+    setOpenSuggestions(value.length > 0);
   };
+
   const handleClearSearch = () => {
     setSearchTerm("");
     setOpenSuggestions(false);
-    setIsSearchActive(false); // Allow navbar to collapse
   };
-
   const handleSuggestionClick = (suggestion) => {
-    // Replace whitespaces with hyphens and convert to lowercase
     const formattedSuggestion = suggestion
-      .replace(/[^a-zA-Z0-9]+/g, "-") // Replace all non-alphanumeric characters with '-'
-      .replace(/^-+|-+$/g, "") // Remove leading/trailing '-'
+      .replace(/[^a-zA-Z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
       .toLowerCase();
     setSearchTerm(suggestion);
     setOpenSuggestions(false);
+    navigate(`/products/${formattedSuggestion}`);
+  };
 
-    // Navigate with the formatted suggestion
-    navigate(`/products/${formattedSuggestion}`); // Modify based on your routing logic
+  const handleInputFocus = () => {
+    setIsSearchActive(true);
+    setIsInputFocused(true);
+  };
+
+  const handleInputBlur = () => {
+    setIsInputFocused(false);
+    if (!searchTerm) {
+      setIsSearchActive(false);
+    }
   };
 
   const renderNavbarItems = routes.map(
@@ -246,47 +258,70 @@ function DefaultNavbarMobile({ routes, open }) {
       in={Boolean(open) || isSearchActive}
       timeout="auto"
       unmountOnExit
-      onClick={handleClearSearch}
+      sx={{
+        position: "fixed",
+        top: "64px",
+        left: 0,
+        right: 0,
+        zIndex: 1200,
+        backgroundColor: "background.paper",
+        height: "var(--viewport-height, auto)",
+        overflowY: "auto",
+      }}
     >
+      {" "}
       <MKBox width="calc(100% + 1.625rem)" my={2} ml={-2}>
         {renderNavbarItems}
-        <Box sx={{ display: "flex", alignItems: "center", position: "relative" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            position: "relative",
+            padding: "8px",
+          }}
+        >
           <InputBase
             value={searchTerm}
             onChange={handleSearchChange}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
             placeholder="Search..."
             sx={{
               backgroundColor: "white",
               borderRadius: 1,
-              padding: "5px 10px",
-              width: "200px",
-              fontSize: "15px",
+              padding: "8px 12px",
+              flex: 1,
+              fontSize: "0.875rem",
+              boxShadow: 1,
             }}
           />
           {searchTerm && (
-            <IconButton onClick={handleClearSearch} sx={{ ml: 1 }}>
-              <CloseIcon />
+            <IconButton
+              onClick={handleClearSearch}
+              sx={{
+                ml: 1,
+                position: "absolute",
+                right: "4px",
+              }}
+            >
+              <CloseIcon fontSize="small" />
             </IconButton>
           )}
 
           {openSuggestions && filteredSuggestions.length > 0 && (
             <Box
               sx={{
-                position: "absolute",
-                top: "40px",
-                left: 0,
-                right: 0,
-                backgroundColor: "#fff",
+                position: "fixed",
+                top: "120px",
+                left: "8px",
+                right: "8px",
+                backgroundColor: "background.paper",
                 borderRadius: 1,
                 boxShadow: 3,
-                maxHeight: "200px", // Set max height for vertical scrolling
-                zIndex: 1,
-                display: "flex",
-                flexDirection: "column", // Arrange suggestions vertically
-                overflowY: "auto", // Enable vertical scrolling
-                overflowX: "hidden", // Enable horizontal scrolling
-                padding: "5px", // Add padding for spacing
-                color: "white", //
+                maxHeight: "50vh",
+                zIndex: 1300,
+                overflowY: "auto",
+                padding: "4px",
               }}
             >
               {filteredSuggestions.map((suggestion, index) => (
@@ -294,10 +329,10 @@ function DefaultNavbarMobile({ routes, open }) {
                   key={index}
                   onClick={() => handleSuggestionClick(suggestion)}
                   sx={{
-                    fontSize: "14px",
-                    padding: "5px 10px",
-                    cursor: "pointer",
-                    marginBottom: "5px", // Add margin for spacing between items
+                    fontSize: "0.875rem",
+                    padding: "8px",
+                    marginBottom: "4px",
+                    minHeight: "auto",
                   }}
                 >
                   {suggestion}
