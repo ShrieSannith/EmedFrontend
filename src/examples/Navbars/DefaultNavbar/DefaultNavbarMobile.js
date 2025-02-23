@@ -75,15 +75,88 @@ function DefaultNavbarMobile({ routes, open }) {
 
   return (
     <AppBar position="static" sx={{ minHeight: "5px" }}>
-      {" "}
-      {/* Adjusted height */} {/* Ensured consistent height */}
       <MKBox width="100%">
         <Collapse in={Boolean(open) || isSearchActive} timeout="auto" unmountOnExit>
           <MKBox width="calc(100% + 1.625rem)" my={1} ml={-2}>
-            {" "}
-            {/* Reduced margin */}
-            {routes.map(({ name, icon, route }) => (
-              <DefaultNavbarDropdown key={name} name={name} icon={icon} route={route} />
+            {routes.map(({ name, icon, collapse: dropdown, route, href }) => (
+              <DefaultNavbarDropdown
+                key={name}
+                name={name}
+                icon={icon}
+                collapseStatus={collapse === name}
+                onClick={() => handleSetCollapse(name)}
+                route={route}
+                href={href}
+                collapse={dropdown}
+              >
+                {dropdown && (
+                  <MKBox sx={{ height: "15rem", maxHeight: "15rem", overflowY: "scroll" }}>
+                    {dropdown.map((item) => (
+                      <MKBox key={item.name} px={2}>
+                        {item.collapse ? (
+                          <>
+                            <MKTypography
+                              display="block"
+                              variant="button"
+                              fontWeight="bold"
+                              textTransform="capitalize"
+                              py={1}
+                              px={0.5}
+                            >
+                              {item.name}
+                            </MKTypography>
+                            {item.collapse.map((subItem) => (
+                              <MKTypography
+                                key={subItem.name}
+                                component={subItem.route ? Link : MuiLink}
+                                to={subItem.route || ""}
+                                href={subItem.href || ""}
+                                target={subItem.href ? "_blank" : ""}
+                                rel={subItem.href ? "noreferrer" : ""}
+                                minWidth="11.25rem"
+                                display="block"
+                                variant="button"
+                                color="text"
+                                textTransform="capitalize"
+                                fontWeight="regular"
+                                py={0.625}
+                                px={2}
+                                sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
+                                  borderRadius: borderRadius.md,
+                                  cursor: "pointer",
+                                  transition: "all 300ms linear",
+                                  "&:hover": {
+                                    backgroundColor: grey[200],
+                                    color: dark.main,
+                                  },
+                                })}
+                              >
+                                {subItem.name}
+                              </MKTypography>
+                            ))}
+                          </>
+                        ) : (
+                          <MKTypography
+                            component={item.route ? Link : MuiLink}
+                            to={item.route || ""}
+                            href={item.href || ""}
+                            target={item.href ? "_blank" : ""}
+                            rel={item.href ? "noreferrer" : ""}
+                            display="block"
+                            variant="button"
+                            color="text"
+                            fontWeight="regular"
+                            py={0.625}
+                            px={2}
+                          >
+                            {item.name}
+                          </MKTypography>
+                        )}
+                      </MKBox>
+                    ))}
+                  </MKBox>
+                )}
+              </DefaultNavbarDropdown>
             ))}
             <Box sx={{ display: "flex", alignItems: "center", position: "relative" }}>
               <InputBase
@@ -103,29 +176,6 @@ function DefaultNavbarMobile({ routes, open }) {
                 <IconButton onClick={handleClearSearch} sx={{ ml: 1 }}>
                   <CloseIcon />
                 </IconButton>
-              )}
-              {openSuggestions && filteredSuggestions.length > 0 && (
-                <Box
-                  sx={{
-                    position: "absolute",
-                    top: "40px",
-                    left: 0,
-                    right: 0,
-                    backgroundColor: "#fff",
-                    borderRadius: 1,
-                    boxShadow: 3,
-                    maxHeight: "200px",
-                    zIndex: 1,
-                    overflowY: "auto",
-                    padding: "5px",
-                  }}
-                >
-                  {filteredSuggestions.map((suggestion, index) => (
-                    <MenuItem key={index} onClick={() => handleSuggestionClick(suggestion)}>
-                      {suggestion}
-                    </MenuItem>
-                  ))}
-                </Box>
               )}
             </Box>
           </MKBox>
