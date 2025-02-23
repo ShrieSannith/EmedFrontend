@@ -74,61 +74,63 @@ function DefaultNavbarMobile({ routes, open }) {
   };
 
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <MKBox width="100%">
-          <Collapse in={Boolean(open) || isSearchActive} timeout="auto" unmountOnExit>
-            <MKBox width="calc(100% + 1.625rem)" my={2} ml={-2}>
-              {routes.map(({ name, icon, route }) => (
-                <DefaultNavbarDropdown key={name} name={name} icon={icon} route={route} />
-              ))}
-              <Box sx={{ display: "flex", alignItems: "center", position: "relative" }}>
-                <InputBase
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-                  onFocus={() => setIsSearchActive(true)}
-                  placeholder="Search..."
+    <AppBar position="static" sx={{ minHeight: "5px" }}>
+      {" "}
+      {/* Adjusted height */} {/* Ensured consistent height */}
+      <MKBox width="100%">
+        <Collapse in={Boolean(open) || isSearchActive} timeout="auto" unmountOnExit>
+          <MKBox width="calc(100% + 1.625rem)" my={1} ml={-2}>
+            {" "}
+            {/* Reduced margin */}
+            {routes.map(({ name, icon, route }) => (
+              <DefaultNavbarDropdown key={name} name={name} icon={icon} route={route} />
+            ))}
+            <Box sx={{ display: "flex", alignItems: "center", position: "relative" }}>
+              <InputBase
+                value={searchTerm}
+                onChange={handleSearchChange}
+                onFocus={() => setIsSearchActive(true)}
+                placeholder="Search..."
+                sx={{
+                  backgroundColor: "white",
+                  borderRadius: 1,
+                  padding: "5px 10px",
+                  width: "200px",
+                  fontSize: "15px",
+                }}
+              />
+              {searchTerm && (
+                <IconButton onClick={handleClearSearch} sx={{ ml: 1 }}>
+                  <CloseIcon />
+                </IconButton>
+              )}
+              {openSuggestions && filteredSuggestions.length > 0 && (
+                <Box
                   sx={{
-                    backgroundColor: "white",
+                    position: "absolute",
+                    top: "40px",
+                    left: 0,
+                    right: 0,
+                    backgroundColor: "#fff",
                     borderRadius: 1,
-                    padding: "5px 10px",
-                    width: "200px",
-                    fontSize: "15px",
+                    boxShadow: 3,
+                    maxHeight: "200px",
+                    zIndex: 1,
+                    overflowY: "auto",
+                    padding: "5px",
                   }}
-                />
-                {searchTerm && (
-                  <IconButton onClick={handleClearSearch} sx={{ ml: 1 }}>
-                    <CloseIcon />
-                  </IconButton>
-                )}
-                {openSuggestions && filteredSuggestions.length > 0 && (
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      top: "40px",
-                      left: 0,
-                      right: 0,
-                      backgroundColor: "#fff",
-                      borderRadius: 1,
-                      boxShadow: 3,
-                      maxHeight: "200px",
-                      zIndex: 1,
-                      overflowY: "auto",
-                      padding: "5px",
-                    }}
-                  >
-                    {filteredSuggestions.map((suggestion, index) => (
-                      <MenuItem key={index} onClick={() => handleSuggestionClick(suggestion)}>
-                        {suggestion}
-                      </MenuItem>
-                    ))}
-                  </Box>
-                )}
-              </Box>
-            </MKBox>
-          </Collapse>
-        </MKBox>
-      </Toolbar>
+                >
+                  {filteredSuggestions.map((suggestion, index) => (
+                    <MenuItem key={index} onClick={() => handleSuggestionClick(suggestion)}>
+                      {suggestion}
+                    </MenuItem>
+                  ))}
+                </Box>
+              )}
+            </Box>
+          </MKBox>
+        </Collapse>
+      </MKBox>
     </AppBar>
   );
 }
