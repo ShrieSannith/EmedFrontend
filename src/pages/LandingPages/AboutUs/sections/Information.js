@@ -28,7 +28,7 @@ import RotatingCardFront from "examples/Cards/RotatingCard/RotatingCardFront";
 import RotatingCardBack from "examples/Cards/RotatingCard/RotatingCardBack";
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 
-const medical1 = "/images/Anesthesia_Prima_320.webp";
+const medical1 = "/Anesthesia_Prima_320.webp";
 
 // Images
 import bgFront from "assets/images/rotating-card-bg-front.jpeg";

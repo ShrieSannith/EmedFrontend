@@ -13,7 +13,7 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 import routes from "routes";
 import footerRoutes from "footer.routes";
 
-const bgImage = "/images/OT_Contact_Us.avif";
+const bgImage = "/OT_Contact_Us.avif";
 
 function ContactUs() {
   const [formData, setFormData] = useState({
