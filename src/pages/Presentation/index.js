@@ -125,7 +125,10 @@ function Presentation() {
 
   const handleSuggestionClick = (suggestion) => {
     // Replace whitespaces with hyphens and convert to lowercase
-    const formattedSuggestion = suggestion.replace(/\s+/g, "-").toLowerCase();
+    const formattedSuggestion = suggestion
+      .replace(/[^a-zA-Z0-9]+/g, "-") // Replace all non-alphanumeric characters with '-'
+      .replace(/^-+|-+$/g, "") // Remove leading/trailing '-'
+      .toLowerCase();
 
     setSearchTerm(suggestion);
     setOpenSuggestions(false);
