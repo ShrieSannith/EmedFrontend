@@ -22,6 +22,7 @@ import productList from "../ProductList.json"; // Replace with the actual path
 
 function Contact() {
   const location = useLocation(); // Get the current location object
+
   const [product, setProduct] = useState({
     name: "Default Product Name",
     bgImage: "default-image-url.jpg",
@@ -94,6 +95,14 @@ function Contact() {
         }
       );
   };
+  const hiddenPaths = [
+    "ppgi-epoxy-modular-ot",
+    "stainless-steel-modular-ot",
+    "medical-gas-pipeline",
+  ];
+
+  const lastSegment = location.pathname.split("/").pop();
+  const shouldHideRadioGroup = hiddenPaths.includes(lastSegment);
 
   return (
     <MKBox component="section" py={{ xs: 0, lg: 6 }}>
@@ -143,23 +152,26 @@ function Contact() {
                   </MKBox>
 
                   <MKBox pt={0.5} pb={3} px={3}>
-                    <Grid item xs={12} pr={1} mb={4} mt={-6}>
-                      <FormLabel id="requirement-label" sx={{ fontSize: "17px" }}>
-                        Requirement
-                      </FormLabel>
-                      <RadioGroup
-                        row
-                        aria-labelledby="requirement-label"
-                        name="requirement"
-                        value={formData.requirement}
-                        onChange={handleChange}
-                      >
-                        <FormControlLabel value="Buy" control={<Radio />} label="Buy Product" />
-                        <FormControlLabel value="Rent" control={<Radio />} label="Rent Product" />
-                        <FormControlLabel value="Service" control={<Radio />} label="Service" />
-                        <FormControlLabel value="Other" control={<Radio />} label="Other" />
-                      </RadioGroup>
-                    </Grid>
+                    {!shouldHideRadioGroup && (
+                      <Grid item xs={12} pr={1} mb={4} mt={-6}>
+                        <FormLabel id="requirement-label" sx={{ fontSize: "17px" }}>
+                          Requirement
+                        </FormLabel>
+
+                        <RadioGroup
+                          row
+                          aria-labelledby="requirement-label"
+                          name="requirement"
+                          value={formData.requirement}
+                          onChange={handleChange}
+                        >
+                          <FormControlLabel value="Buy" control={<Radio />} label="Buy Product" />
+                          <FormControlLabel value="Rent" control={<Radio />} label="Rent Product" />
+                          <FormControlLabel value="Service" control={<Radio />} label="Service" />
+                          <FormControlLabel value="Other" control={<Radio />} label="Other" />
+                        </RadioGroup>
+                      </Grid>
+                    )}
                     <Grid container spacing={3} pr={1} mb={6} mt={-2}>
                       <Grid item xs={12} sm={6}>
                         <MKInput

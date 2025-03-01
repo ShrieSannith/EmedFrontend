@@ -23,6 +23,7 @@ import Icon from "@mui/material/Icon";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
+import clients from "../clients1.png";
 
 function About() {
   const bgImage =
@@ -79,6 +80,11 @@ function About() {
             us to take tough challenges and acquire outstanding results. Owing to his support and
             motivation, we have established our distinct identity in the market.
           </MKTypography>
+          <br />
+          <MKTypography variant="h1" color="black" mb={1} sx={{ fontSize: "30px" }}>
+            Some of our Clients
+          </MKTypography>
+          <img src={clients} style={{ width: "100%", maxWidth: "1200px" }}></img>
 
           {/* <MKTypography variant="h4" color="black" fontWeight="bold"></MKTypography>
           <MKTypography variant="h1" color="black" mb={6} sx={{ fontSize: "30px" }}>

@@ -40,15 +40,15 @@ export default {
     // },
   ],
   menus: [
-    {
-      name: "company",
-      items: [
-        { name: "about us", href: "https://www.creative-tim.com/presentation" },
-        { name: "Operation Theatre services", href: "https://www.creative-tim.com/templates/free" },
-        { name: "Purchase Equipment", href: "https://www.creative-tim.com/templates/premium" },
-        { name: "Other Services", href: "https://www.creative-tim.com/blog" },
-      ],
-    },
+    // {
+    //   name: "company",
+    //   items: [
+    //     { name: "about us", href: "https://www.creative-tim.com/presentation" },
+    //     { name: "Operation Theatre services", href: "https://www.creative-tim.com/templates/free" },
+    //     { name: "Purchase Equipment", href: "https://www.creative-tim.com/templates/premium" },
+    //     { name: "Other Services", href: "https://www.creative-tim.com/blog" },
+    //   ],
+    // },
     // {
     //   name: "resources",
     //   items: [
@@ -57,15 +57,15 @@ export default {
     //     { name: "affiliate program", href: "https://www.creative-tim.com/affiliates/new" },
     //   ],
     // },
-    {
-      name: "help & support",
-      items: [
-        { name: "contact us", href: "https://www.creative-tim.com/contact-us" },
-        { name: "Job Opportunities", href: "https://www.creative-tim.com/knowledge-center" },
-        { name: "Query Form", href: "https://services.creative-tim.com/" },
-        { name: "AMC Issues", href: "https://www.creative-tim.com/sponsorships" },
-      ],
-    },
+    // {
+    //   name: "help & support",
+    //   items: [
+    //     { name: "contact us", href: "https://www.creative-tim.com/contact-us" },
+    //     { name: "Job Opportunities", href: "https://www.creative-tim.com/knowledge-center" },
+    //     { name: "Query Form", href: "https://services.creative-tim.com/" },
+    //     { name: "AMC Issues", href: "https://www.creative-tim.com/sponsorships" },
+    //   ],
+    // },
     // {
     //   name: "legal",
     //   items: [
