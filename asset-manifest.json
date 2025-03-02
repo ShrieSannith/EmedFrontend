@@ -1,13 +1,14 @@
 {
   "files": {
     "main.css": "/EmedFrontend/static/css/main.8dd7c2f0.css",
-    "main.js": "/EmedFrontend/static/js/main.296826f4.js",
+    "main.js": "/EmedFrontend/static/js/main.39c35a92.js",
     "static/media/rotating-card-bg-front.jpeg": "/EmedFrontend/static/media/rotating-card-bg-front.bdcdfadc0dacb9bc5f23.jpeg",
     "static/media/Xray.jpg": "/EmedFrontend/static/media/Xray.d610a0264cf7b75a7388.jpg",
     "static/media/macbook.png": "/EmedFrontend/static/media/macbook.e0a8c5d5cc02d71b6d86.png",
     "static/media/OT_generated_2.png": "/EmedFrontend/static/media/OT_generated_2.3ce6e9b6362f21e4bf20.png",
     "static/media/Hospital_Maintenance.jpg": "/EmedFrontend/static/media/Hospital_Maintenance.1bd8d88ea4aad650a49f.jpg",
     "static/media/rotating-card-bg-back.jpeg": "/EmedFrontend/static/media/rotating-card-bg-back.183088de91adb283a9ae.jpeg",
+    "static/media/clients1.png": "/EmedFrontend/static/media/clients1.c1e7a16a9c6126a56175.png",
     "static/media/HospitalMaintenance.jpg": "/EmedFrontend/static/media/HospitalMaintenance.8a160da3352dedd0ba8a.jpg",
     "static/media/training.avif": "/EmedFrontend/static/media/training.3015e18c8c816c8126be.avif",
     "static/media/Prima-320.png": "/EmedFrontend/static/media/Prima-320.e60c7e129d2b9790eb80.png",
@@ -36,10 +37,10 @@
     "static/media/slick.woff": "/EmedFrontend/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/EmedFrontend/index.html",
     "main.8dd7c2f0.css.map": "/EmedFrontend/static/css/main.8dd7c2f0.css.map",
-    "main.296826f4.js.map": "/EmedFrontend/static/js/main.296826f4.js.map"
+    "main.39c35a92.js.map": "/EmedFrontend/static/js/main.39c35a92.js.map"
   },
   "entrypoints": [
     "static/css/main.8dd7c2f0.css",
-    "static/js/main.296826f4.js"
+    "static/js/main.39c35a92.js"
   ]
 }
