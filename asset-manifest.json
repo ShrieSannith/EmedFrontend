@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/EmedFrontend/static/css/main.8dd7c2f0.css",
-    "main.js": "/EmedFrontend/static/js/main.39c35a92.js",
+    "main.js": "/EmedFrontend/static/js/main.4e685138.js",
     "static/media/rotating-card-bg-front.jpeg": "/EmedFrontend/static/media/rotating-card-bg-front.bdcdfadc0dacb9bc5f23.jpeg",
     "static/media/Xray.jpg": "/EmedFrontend/static/media/Xray.d610a0264cf7b75a7388.jpg",
     "static/media/macbook.png": "/EmedFrontend/static/media/macbook.e0a8c5d5cc02d71b6d86.png",
@@ -37,10 +37,10 @@
     "static/media/slick.woff": "/EmedFrontend/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/EmedFrontend/index.html",
     "main.8dd7c2f0.css.map": "/EmedFrontend/static/css/main.8dd7c2f0.css.map",
-    "main.39c35a92.js.map": "/EmedFrontend/static/js/main.39c35a92.js.map"
+    "main.4e685138.js.map": "/EmedFrontend/static/js/main.4e685138.js.map"
   },
   "entrypoints": [
     "static/css/main.8dd7c2f0.css",
-    "static/js/main.39c35a92.js"
+    "static/js/main.4e685138.js"
   ]
 }
