@@ -1,0 +1,9 @@
+<script>
+  var path = window.location.pathname;
+  var search = window.location.search;
+  var hash = window.location.hash;
+
+  if (path !== "/") {
+    window.location.replace("/" + search + hash);
+  }
+</script>
