@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.53c40c8b.css",
-    "main.js": "/static/js/main.9ebb0d8a.js",
+    "main.js": "/static/js/main.5fdba8b1.js",
     "static/media/rotating-card-bg-front.jpeg": "/static/media/rotating-card-bg-front.bdcdfadc0dacb9bc5f23.jpeg",
     "static/media/Xray.jpg": "/static/media/Xray.d610a0264cf7b75a7388.jpg",
     "static/media/macbook.png": "/static/media/macbook.e0a8c5d5cc02d71b6d86.png",
@@ -37,10 +37,10 @@
     "index.html": "/index.html",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "main.53c40c8b.css.map": "/static/css/main.53c40c8b.css.map",
-    "main.9ebb0d8a.js.map": "/static/js/main.9ebb0d8a.js.map"
+    "main.5fdba8b1.js.map": "/static/js/main.5fdba8b1.js.map"
   },
   "entrypoints": [
     "static/css/main.53c40c8b.css",
-    "static/js/main.9ebb0d8a.js"
+    "static/js/main.5fdba8b1.js"
   ]
 }
